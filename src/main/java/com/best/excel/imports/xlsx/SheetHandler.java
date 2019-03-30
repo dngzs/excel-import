@@ -265,7 +265,6 @@ public class SheetHandler extends DefaultHandler {
 
             if (formatString.contains(DATE_M_D_YY)) {
                 nextDataType = CellValueType.Date;
-                formatString = "yyyy-MM-dd hh:mm:ss";
             }
 
             if (formatString == null) {

@@ -6,50 +6,42 @@ import java.util.List;
 
 /**
  * excel 导入工具类,对cell类型做映射
+ *
  * @author JueYue
  * @version 1.0 2013年8月24日
  */
 
 public class ImportEntity {
 
+    /**
+     * 时间格式化
+     */
     private String format;
 
+    /**
+     * 文本标识
+     */
     private int type;
 
+    /**
+     * 表头
+     */
     private String name;
-
-    /**
-     * 对应 Collection NAME
-     */
-    private String                  collectionName;
-
-    /**
-     * 对应exportType
-     */
-    private String                  classType;
-    /**
-     * 后缀
-     */
-    private String                  suffix;
-    /**
-     * 导入校验字段
-     */
-    private boolean                 importField;
 
     /**
      * 枚举导入静态方法
      */
-    private String                   enumImportMethod;
+    private String enumImportMethod;
 
-    private List<ImportEntity> list;
-
-
+    /**
+     * get set方法
+     */
     private List<Method> methods;
 
     /**
      * set/get方法
      */
-    private Method   method;
+    private Method method;
 
     public List<Method> getMethods() {
         return methods;
@@ -65,47 +57,6 @@ public class ImportEntity {
 
     public void setMethods(List<Method> methods) {
         this.methods = methods;
-    }
-
-    public String getClassType() {
-        return classType;
-    }
-
-    public String getCollectionName() {
-        return collectionName;
-    }
-
-    public List<ImportEntity> getList() {
-        return list;
-    }
-
-    public void setClassType(String classType) {
-        this.classType = classType;
-    }
-
-    public void setCollectionName(String collectionName) {
-        this.collectionName = collectionName;
-    }
-
-    public void setList(List<ImportEntity> list) {
-        this.list = list;
-    }
-
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-
-    public boolean isImportField() {
-        return importField;
-    }
-
-    public void setImportField(boolean importField) {
-        this.importField = importField;
     }
 
     public String getEnumImportMethod() {

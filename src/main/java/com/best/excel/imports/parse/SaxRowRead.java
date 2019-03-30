@@ -125,7 +125,7 @@ public class SaxRowRead extends ImportBaseService implements ISaxRowRead {
             entity = datas.get(i);
             String titleString = titlemap.get(i);
             if (excelParams.containsKey(titleString)) {
-                saveFieldValue(params, object, entity, excelParams, titleString);
+                saveFieldValue(object, entity, excelParams, titleString);
             }
         }
         if (object != null && hanlder != null) {
@@ -157,11 +157,12 @@ public class SaxRowRead extends ImportBaseService implements ISaxRowRead {
         Collection collection = (Collection) PoiReflectorUtil.fromCache(pojoClass).getValue(object,
                 param.getName());
         Object entity = PoiPublicUtil.createObject(param.getType(), targetId);
-        boolean isUsed = false;// 是否需要加上这个对象
+        // 标记是否需要加上这个对象
+        boolean isUsed = false;
         for (int i = 0; i < datas.size(); i++) {
             String titleString = titlemap.get(i);
             if (param.getExcelParams().containsKey(titleString)) {
-                saveFieldValue(params, entity, datas.get(i), param.getExcelParams(), titleString);
+                saveFieldValue(entity, datas.get(i), param.getExcelParams(), titleString);
                 isUsed = true;
             }
         }
@@ -173,14 +174,13 @@ public class SaxRowRead extends ImportBaseService implements ISaxRowRead {
     /**
      * 设置值
      *
-     * @param params
      * @param object
      * @param entity
      * @param excelParams
      * @param titleString
      * @throws Exception
      */
-    private void saveFieldValue(ImportParams params, Object object, SaxReadCellEntity entity,
+    private void saveFieldValue(Object object, SaxReadCellEntity entity,
                                 Map<String, ImportEntity> excelParams,
                                 String titleString) throws Exception {
         Object value = cellValueServer.getValue(object, entity,

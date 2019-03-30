@@ -19,7 +19,10 @@ public class ImportParams {
      */
     private Class[] verfiyGroup;
 
-    private int sheetNum;
+    /**
+     * 上传表格需要读取的sheet 数量,默认为1
+     */
+    private int sheetNum = 1;
 
     public int getSheetNum() {
         return sheetNum;

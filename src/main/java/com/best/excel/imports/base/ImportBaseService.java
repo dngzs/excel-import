@@ -13,11 +13,11 @@ import java.util.Map;
 
 /**
  * 导入基础和,普通方法和Sax共用
+ *
  * @author JueYue
- *  2015年1月9日 下午10:25:53
+ * 2015年1月9日 下午10:25:53
  */
 public class ImportBaseService {
-
 
 
     /**
@@ -37,6 +37,7 @@ public class ImportBaseService {
         excelEntity = new ImportEntity();
         excelEntity.setType(excel.type());
         excelEntity.setFormat(excel.format());
+        excelEntity.setEnumImportMethod(excel.enumImportMethod());
         excelEntity.setName(PoiPublicUtil.getValueByTargetId(excel.name(), targetId, null));
         excelEntity.setMethod(PoiReflectorUtil.fromCache(pojoClass).getSetMethod(field.getName()));
         temp.put(excelEntity.getName(), excelEntity);
@@ -44,6 +45,7 @@ public class ImportBaseService {
 
     /**
      * 获取需要导出的全部字段
+     *
      * @param targetId
      * @param fields
      * @param excelParams
@@ -51,19 +53,18 @@ public class ImportBaseService {
      * @throws Exception
      */
     public void getAllExcelField(String targetId, Field[] fields,
-                                 Map<String, ImportEntity> excelParams,Class<?> pojoClass) throws Exception {
+                                 Map<String, ImportEntity> excelParams, Class<?> pojoClass) throws Exception {
         ImportEntity excelEntity = null;
         for (int i = 0; i < fields.length; i++) {
             Field field = fields[i];
             if (PoiPublicUtil.isNotUserExcelUserThis(null, field, targetId)) {
                 continue;
             }
-             if (PoiPublicUtil.isJavaClass(field) || field.getType().isEnum()) {
-                 addEntityToMap(targetId, field, excelEntity, pojoClass, excelParams);
+            if (PoiPublicUtil.isJavaClass(field) || field.getType().isEnum()) {
+                addEntityToMap(targetId, field, excelEntity, pojoClass, excelParams);
             }
         }
     }
-
 
 
     public Object getFieldBySomeMethod(List<Method> list, Object t) throws Exception {
@@ -74,7 +75,6 @@ public class ImportBaseService {
         }
         return t;
     }
-
 
 
     /**
@@ -90,7 +90,6 @@ public class ImportBaseService {
     }
 
     /**
-     *
      * @param entity
      * @param object
      * @param value
